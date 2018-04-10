@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 #import "RCTGIFImageDecoder.h"
@@ -86,7 +84,8 @@ RCT_EXPORT_MODULE()
     // Create animation
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
     animation.calculationMode = kCAAnimationDiscrete;
-    animation.repeatCount = loopCount == 0 ? HUGE_VALF : loopCount;
+    animation.repeatCount = loopCount == 0 ? 0 : loopCount;
+    animation.fillMode = @"forwards";
     animation.keyTimes = keyTimes;
     animation.values = images;
     animation.duration = duration;
